@@ -22,6 +22,6 @@
     "bundleDependencies": [],
     "license": "BSD",
     "dependencies": {
-        "tiddlywiki": "Jermolene/TiddlyWiki5#c9692d7a508cfdb0446e67061201961dca64d8dd"
+        "tiddlywiki": "github:Jermolene/TiddlyWiki5#c9692d7a508cfdb0446e67061201961dca64d8dd"
     }
 }
