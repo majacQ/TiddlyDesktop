@@ -70,6 +70,7 @@ trayMenu.append(new gui.MenuItem({
 	label: "Quit",
 	click: function() {
 		gui.App.quit();
+		// gui.App.closeAllWindows();
 	}
 }));
 tray.menu = trayMenu;
@@ -102,6 +103,12 @@ var backstageWikiFolder = $tw.desktop.utils.wiki.getBackstageWikiFolder(gui.App.
 
 // Show dev tools on F12
 $tw.desktop.utils.devtools.trapDevTools(backstageWindow,document);
+
+
+// First part of boot process
+var _sjcl = require("../tiddlywiki/boot/sjcl.js");
+global.sjcl = _sjcl;
+window.sjcl = _sjcl;
 
 // First part of boot process
 require("../tiddlywiki/boot/bootprefix.js").bootprefix($tw);
@@ -163,9 +170,10 @@ $tw.boot.boot(function() {
 		}
 	}
 	// Register for file open events
-	gui.App.on("open",function(p) {
-		$tw.desktop.windowList.openByPathname(p);
-	});
+	// Commented out as an attempt to fix https://github.com/TiddlyWiki/TiddlyDesktop/issues/214
+	// gui.App.on("open",function(cmdline) {
+	// 	$tw.desktop.windowList.openByPathname(p);
+	// });
 	// Open wiki list window if we haven't opened any other windows
 	if(!commandFlags.haveOpenedWindow) {
 		$tw.desktop.windowList.openByUrl("backstage://WikiListWindow",{mustQuitOnClose: true});		
